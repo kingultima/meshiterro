@@ -1,0 +1,13 @@
+自分が投稿したもの以外に削除できないよう制限する
+
+app/views/post_images/show.html.erb(考え方)
+もし、投稿者 == 現在ログインしているユーザー だったら
+    削除ボタン
+終わり
+
+<% if @post_image.user == current_user %>
+  <%= link_to "削除", post_image_path(@post_image), method: :delete %>
+<% end %>
+
+@post_image.userでは投稿(@post_image)に紐づいているユーザー(.user) current_userはdeviseの用意しているヘルパーで現在ログインしているユーザーが取得できます。 この二つを == で比較して一致して入れば削除ボタンが表示される
+
